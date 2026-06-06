@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gizlilik Politikası – Digital Tasbih</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-deep:   #1a3a2a;
+      --green-mid:    #2d5e42;
+      --green-light:  #4a8c64;
+      --gold:         #c9a84c;
+      --gold-light:   #e8c97a;
+      --cream:        #f5f0e8;
+      --text-dark:    #1a1a1a;
+      --text-muted:   #5a5a5a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--cream);
+      color: var(--text-dark);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body[dir="rtl"] {
+      font-family: 'Tajawal', sans-serif;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(45,94,66,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(201,168,76,.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .border-top {
+      height: 6px;
+      background: linear-gradient(90deg, var(--green-deep), var(--gold), var(--green-mid), var(--gold-light), var(--green-deep));
+      background-size: 400% 100%;
+      animation: shimmer 6s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+
+    /* Language Switcher */
+    .lang-bar {
+      position: relative; z-index: 10;
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 8px; padding: 16px 24px 0;
+    }
+    .lang-btn {
+      font-family: 'Tajawal', sans-serif;
+      font-size: .8rem; font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,168,76,.4);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-btn:hover { border-color: var(--gold); color: var(--green-deep); }
+    .lang-btn.active {
+      background: var(--green-deep);
+      color: var(--gold-light);
+      border-color: var(--green-deep);
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px 24px 48px;
+    }
+    .logo-ring {
+      width: 80px; height: 80px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(26,58,42,.25), 0 0 0 2px var(--gold);
+      animation: fadeDown .8s ease both;
+    }
+    .logo-ring svg { width: 40px; height: 40px; fill: var(--gold-light); }
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      color: var(--green-deep);
+      letter-spacing: .04em;
+      animation: fadeDown .8s .1s ease both;
+    }
+    body[dir="rtl"] header h1 { font-family: 'Tajawal', sans-serif; }
+    header .subtitle {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 300;
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      animation: fadeDown .8s .2s ease both;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      max-width: 320px;
+      margin: 32px auto 0;
+      animation: fadeDown .8s .3s ease both;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    .divider-gem { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); border-radius: 1px; }
+    main {
+      position: relative; z-index: 1;
+      max-width: 740px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .meta {
+      text-align: center;
+      font-family: 'Tajawal', sans-serif;
+      font-size: .85rem; color: var(--text-muted);
+      margin-bottom: 48px;
+      animation: fadeUp .8s .4s ease both;
+    }
+    section { margin-bottom: 40px; animation: fadeUp .7s ease both; }
+    section:nth-child(1) { animation-delay: .45s; }
+    section:nth-child(2) { animation-delay: .5s; }
+    section:nth-child(3) { animation-delay: .55s; }
+    section:nth-child(4) { animation-delay: .6s; }
+    section:nth-child(5) { animation-delay: .65s; }
+    section:nth-child(6) { animation-delay: .7s; }
+    section:nth-child(7) { animation-delay: .75s; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .section-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--green-deep); color: var(--gold-light);
+      font-family: 'Tajawal', sans-serif; font-size: .8rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    h2 { font-size: 1.1rem; font-weight: 600; color: var(--green-deep); letter-spacing: .02em; }
+    p { font-size: .97rem; line-height: 1.85; color: #2a2a2a; }
+    ul { list-style: none; margin-top: 10px; }
+    ul li { position: relative; padding-left: 20px; font-size: .95rem; line-height: 1.8; color: #2a2a2a; }
+    ul li::before { content: '◆'; position: absolute; left: 0; font-size: .45rem; color: var(--gold); top: .6em; }
+    body[dir="rtl"] ul li { padding-left: 0; padding-right: 20px; }
+    body[dir="rtl"] ul li::before { left: auto; right: 0; }
+    .highlight {
+      background: linear-gradient(135deg, rgba(26,58,42,.06), rgba(201,168,76,.08));
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px; margin-top: 12px;
+    }
+    body[dir="rtl"] .highlight {
+      border-left: none;
+      border-right: 3px solid var(--gold);
+      border-radius: 8px 0 0 8px;
+    }
+    .highlight p { font-size: .93rem; }
+    a { color: var(--green-mid); text-decoration: none; border-bottom: 1px solid var(--gold); }
+    a:hover { color: var(--gold); }
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 24px;
+      border-top: 1px solid rgba(201,168,76,.3);
+      font-family: 'Tajawal', sans-serif;
+      font-size: .82rem; color: var(--text-muted);
+    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(18px);  } to { opacity:1; transform:translateY(0); } }
+    @media (max-width: 480px) { header { padding: 32px 16px 32px; } main { padding: 0 16px 60px; } }
+  </style>
+</head>
+<body>
+
+<div class="border-top"></div>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+  <button class="lang-btn" onclick="setLang('ru')">RU</button>
+  <button class="lang-btn" onclick="setLang('ar')">AR</button>
+</div>
+
+<header>
+  <div class="logo-ring">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="8"  r="4"/>
+      <circle cx="30" cy="14" r="3.5"/>
+      <circle cx="34" cy="25" r="3.5"/>
+      <circle cx="28" cy="34" r="3.5"/>
+      <circle cx="18" cy="37" r="3.5"/>
+      <circle cx="9"  cy="31" r="3.5"/>
+      <circle cx="5"  cy="21" r="3.5"/>
+      <circle cx="10" cy="12" r="3.5"/>
+      <circle cx="20" cy="20" r="2"/>
+    </svg>
+  </div>
+  <h1>Digital Tasbih</h1>
+  <p class="subtitle" id="subtitle"></p>
+  <div class="divider"><div class="divider-gem"></div></div>
+</header>
+
+<main>
+  <p class="meta" id="meta"></p>
+
+  <section>
+    <div class="section-header"><div class="section-num">1</div><h2 id="s1-title"></h2></div>
+    <p id="s1-body"></p>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">2</div><h2 id="s2-title"></h2></div>
+    <p id="s2-body"></p>
+    <ul id="s2-list"></ul>
+    <div class="highlight"><p id="s2-note"></p></div>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">3</div><h2 id="s3-title"></h2></div>
+    <p id="s3-body"></p>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">4</div><h2 id="s4-title"></h2></div>
+    <p id="s4-body"></p>
+    <ul id="s4-list"></ul>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">5</div><h2 id="s5-title"></h2></div>
+    <p id="s5-body"></p>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">6</div><h2 id="s6-title"></h2></div>
+    <p id="s6-body"></p>
+  </section>
+
+  <section>
+    <div class="section-header"><div class="section-num">7</div><h2 id="s7-title"></h2></div>
+    <p id="s7-body"></p>
+    <div class="highlight"><p>📧 <strong>digitaltasbihsocial@gmail.com</strong></p></div>
+  </section>
+</main>
+
+<footer id="footer"></footer>
+
+<script>
+const translations = {
+  tr: {
+    dir: "ltr",
+    lang: "tr",
+    title: "Gizlilik Politikası – Digital Tasbih",
+    subtitle: "Gizlilik Politikası",
+    meta: "Son güncelleme: Haziran 2025",
+    s1: { title: "Genel Bakış", body: "Digital Tasbih uygulamasını kullanan kullanıcıların gizliliğine saygı duyuyoruz. Bu politika, uygulamamızın hangi verileri topladığını, nasıl kullandığını ve koruduğunu açıklamaktadır." },
+    s2: {
+      title: "Toplanan Veriler",
+      body: "Uygulama, aşağıdaki verileri otomatik olarak toplayabilir:",
+      list: ["Cihaz türü, işletim sistemi versiyonu ve dil ayarı", "Uygulama kullanım istatistikleri (oturum süresi, ekran gezintisi)", "Uygulama performansı ve hata (crash) raporları", "Genel konum bilgisi (ülke/şehir düzeyinde, kesin konum değil)"],
+      note: "Uygulama; ad, soyad, e-posta, telefon numarası veya finansal bilgi <strong>toplamaz</strong>. Kullanıcı hesabı oluşturma zorunluluğu <strong>yoktur</strong>."
+    },
+    s3: { title: "Firebase Analytics", body: 'Uygulama, Google tarafından sağlanan Firebase Analytics hizmetini kullanmaktadır. Bu hizmet, uygulama performansını iyileştirmek amacıyla anonim kullanım verileri toplar. Firebase\'in gizlilik politikası için: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>' },
+    s4: { title: "Verilerin Kullanım Amacı", body: "Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:", list: ["Uygulama stabilitesini ve performansını artırmak", "Hataları tespit etmek ve gidermek", "Kullanıcı deneyimini geliştirmek"] },
+    s5: { title: "Üçüncü Taraflarla Paylaşım", body: "Kişisel verileriniz üçüncü taraflarla satılmaz, kiralanmaz veya ticari amaçla paylaşılmaz. Veriler yalnızca yukarıda belirtilen hizmet sağlayıcılar (Firebase/Google) aracılığıyla işlenir ve bu sağlayıcılar kendi gizlilik politikalarına tabidir." },
+    s6: { title: "Çocukların Gizliliği", body: "Uygulama, 13 yaşın altındaki çocuklardan bilerek kişisel veri toplamaz. Ebeveynler, çocuklarına ait veriler hakkında endişe duyuyorlarsa bizimle iletişime geçebilirler." },
+    s7: { title: "İletişim", body: "Bu gizlilik politikasına ilişkin sorularınız için aşağıdaki adres üzerinden bize ulaşabilirsiniz:" },
+    footer: "© 2025 Digital Tasbih · Tüm hakları saklıdır"
+  },
+  en: {
+    dir: "ltr",
+    lang: "en",
+    title: "Privacy Policy – Digital Tasbih",
+    subtitle: "Privacy Policy",
+    meta: "Last updated: June 2025",
+    s1: { title: "Overview", body: "We respect the privacy of users who use the Digital Tasbih application. This policy explains what data our application collects, how it uses it, and how it is protected." },
+    s2: {
+      title: "Data Collected",
+      body: "The application may automatically collect the following data:",
+      list: ["Device type, operating system version, and language setting", "Application usage statistics (session duration, screen navigation)", "Application performance and crash reports", "General location information (country/city level, not precise location)"],
+      note: "The application does <strong>not</strong> collect names, surnames, email addresses, phone numbers, or financial information. There is <strong>no</strong> requirement to create a user account."
+    },
+    s3: { title: "Firebase Analytics", body: 'The application uses Firebase Analytics, a service provided by Google. This service collects anonymous usage data to improve application performance. For Firebase\'s privacy policy: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>' },
+    s4: { title: "Purpose of Data Use", body: "Collected data is used only for the following purposes:", list: ["To improve application stability and performance", "To detect and resolve errors", "To enhance user experience"] },
+    s5: { title: "Sharing with Third Parties", body: "Your personal data is not sold, rented, or shared with third parties for commercial purposes. Data is only processed through the service providers mentioned above (Firebase/Google), and these providers are subject to their own privacy policies." },
+    s6: { title: "Children's Privacy", body: "The application does not knowingly collect personal data from children under 13. Parents who have concerns about data related to their children may contact us." },
+    s7: { title: "Contact", body: "For questions regarding this privacy policy, you can reach us at the following address:" },
+    footer: "© 2025 Digital Tasbih · All rights reserved"
+  },
+  de: {
+    dir: "ltr",
+    lang: "de",
+    title: "Datenschutzerklärung – Digital Tasbih",
+    subtitle: "Datenschutzerklärung",
+    meta: "Zuletzt aktualisiert: Juni 2025",
+    s1: { title: "Überblick", body: "Wir respektieren die Privatsphäre der Nutzer, die die Digital Tasbih-Anwendung verwenden. Diese Richtlinie erklärt, welche Daten unsere Anwendung erfasst, wie sie verwendet und geschützt werden." },
+    s2: {
+      title: "Erhobene Daten",
+      body: "Die Anwendung kann folgende Daten automatisch erfassen:",
+      list: ["Gerätetyp, Betriebssystemversion und Spracheinstellung", "Nutzungsstatistiken der Anwendung (Sitzungsdauer, Bildschirmnavigation)", "Anwendungsleistung und Absturzberichte", "Allgemeine Standortinformationen (Länder-/Stadtebene, kein genauer Standort)"],
+      note: "Die Anwendung erfasst <strong>keine</strong> Namen, E-Mail-Adressen, Telefonnummern oder Finanzdaten. Die Erstellung eines Benutzerkontos ist <strong>nicht erforderlich</strong>."
+    },
+    s3: { title: "Firebase Analytics", body: 'Die Anwendung nutzt Firebase Analytics, einen von Google bereitgestellten Dienst. Dieser Dienst erfasst anonyme Nutzungsdaten zur Verbesserung der Anwendungsleistung. Zur Datenschutzrichtlinie von Firebase: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>' },
+    s4: { title: "Verwendungszweck der Daten", body: "Die erhobenen Daten werden nur für folgende Zwecke verwendet:", list: ["Verbesserung der Stabilität und Leistung der Anwendung", "Erkennung und Behebung von Fehlern", "Verbesserung der Benutzererfahrung"] },
+    s5: { title: "Weitergabe an Dritte", body: "Ihre persönlichen Daten werden nicht verkauft, vermietet oder zu kommerziellen Zwecken an Dritte weitergegeben. Daten werden nur über die oben genannten Dienstleister (Firebase/Google) verarbeitet, und diese Anbieter unterliegen ihren eigenen Datenschutzrichtlinien." },
+    s6: { title: "Datenschutz für Kinder", body: "Die Anwendung erfasst wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren. Eltern, die Bedenken bezüglich der Daten ihrer Kinder haben, können uns kontaktieren." },
+    s7: { title: "Kontakt", body: "Für Fragen zu dieser Datenschutzerklärung können Sie uns unter folgender Adresse erreichen:" },
+    footer: "© 2025 Digital Tasbih · Alle Rechte vorbehalten"
+  },
+  ru: {
+    dir: "ltr",
+    lang: "ru",
+    title: "Политика конфиденциальности – Digital Tasbih",
+    subtitle: "Политика конфиденциальности",
+    meta: "Последнее обновление: Июнь 2025",
+    s1: { title: "Обзор", body: "Мы уважаем конфиденциальность пользователей приложения Digital Tasbih. Данная политика описывает, какие данные собирает наше приложение, как оно их использует и защищает." },
+    s2: {
+      title: "Собираемые данные",
+      body: "Приложение может автоматически собирать следующие данные:",
+      list: ["Тип устройства, версия операционной системы и языковые настройки", "Статистика использования приложения (продолжительность сеанса, навигация по экранам)", "Производительность приложения и отчёты об ошибках", "Общая информация о местоположении (на уровне страны/города, не точное местоположение)"],
+      note: "Приложение <strong>не собирает</strong> имена, фамилии, адреса электронной почты, номера телефонов или финансовые данные. Создание учётной записи <strong>не требуется</strong>."
+    },
+    s3: { title: "Firebase Analytics", body: 'Приложение использует Firebase Analytics — сервис, предоставляемый Google. Этот сервис собирает анонимные данные об использовании для улучшения работы приложения. Политика конфиденциальности Firebase: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>' },
+    s4: { title: "Цель использования данных", body: "Собранные данные используются исключительно в следующих целях:", list: ["Улучшение стабильности и производительности приложения", "Обнаружение и устранение ошибок", "Улучшение пользовательского опыта"] },
+    s5: { title: "Передача третьим лицам", body: "Ваши персональные данные не продаются, не сдаются в аренду и не передаются третьим лицам в коммерческих целях. Данные обрабатываются только через указанных выше поставщиков услуг (Firebase/Google), которые действуют в соответствии со своими политиками конфиденциальности." },
+    s6: { title: "Конфиденциальность детей", body: "Приложение намеренно не собирает персональные данные детей младше 13 лет. Родители, обеспокоенные данными своих детей, могут связаться с нами." },
+    s7: { title: "Контакты", body: "По вопросам, касающимся данной политики конфиденциальности, вы можете связаться с нами по следующему адресу:" },
+    footer: "© 2025 Digital Tasbih · Все права защищены"
+  },
+  ar: {
+    dir: "rtl",
+    lang: "ar",
+    title: "سياسة الخصوصية – Digital Tasbih",
+    subtitle: "سياسة الخصوصية",
+    meta: "آخر تحديث: يونيو 2025",
+    s1: { title: "نظرة عامة", body: "نحترم خصوصية المستخدمين الذين يستخدمون تطبيق Digital Tasbih. توضح هذه السياسة البيانات التي يجمعها تطبيقنا وكيفية استخدامها وحمايتها." },
+    s2: {
+      title: "البيانات المجمَّعة",
+      body: "قد يجمع التطبيق البيانات التالية تلقائيًا:",
+      list: ["نوع الجهاز وإصدار نظام التشغيل وإعداد اللغة", "إحصائيات استخدام التطبيق (مدة الجلسة، التنقل بين الشاشات)", "أداء التطبيق وتقارير الأعطال", "معلومات الموقع العامة (على مستوى الدولة/المدينة، وليس الموقع الدقيق)"],
+      note: "التطبيق <strong>لا يجمع</strong> الأسماء أو عناوين البريد الإلكتروني أو أرقام الهواتف أو البيانات المالية. <strong>لا يُشترط</strong> إنشاء حساب مستخدم."
+    },
+    s3: { title: "Firebase Analytics", body: 'يستخدم التطبيق خدمة Firebase Analytics المقدمة من Google. تجمع هذه الخدمة بيانات استخدام مجهولة لتحسين أداء التطبيق. لمعرفة سياسة خصوصية Firebase: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>' },
+    s4: { title: "الغرض من استخدام البيانات", body: "تُستخدم البيانات المجمعة فقط للأغراض التالية:", list: ["تحسين استقرار التطبيق وأدائه", "اكتشاف الأخطاء وإصلاحها", "تحسين تجربة المستخدم"] },
+    s5: { title: "المشاركة مع أطراف ثالثة", body: "لا تُباع بياناتك الشخصية أو تُؤجَّر أو تُشارَك مع أطراف ثالثة لأغراض تجارية. تتم معالجة البيانات فقط عبر مقدمي الخدمات المذكورين أعلاه (Firebase/Google)، ويخضع هؤلاء المزودون لسياسات الخصوصية الخاصة بهم." },
+    s6: { title: "خصوصية الأطفال", body: "لا يجمع التطبيق عن قصد بيانات شخصية من الأطفال دون سن 13 عامًا. يمكن للآباء الذين لديهم مخاوف بشأن بيانات أطفالهم التواصل معنا." },
+    s7: { title: "التواصل", body: "لأي استفسارات تتعلق بسياسة الخصوصية هذه، يمكنكم التواصل معنا على العنوان التالي:" },
+    footer: "© 2025 Digital Tasbih · جميع الحقوق محفوظة"
+  }
+};
+
+function setLang(code) {
+  const t = translations[code];
+  document.documentElement.lang = t.lang;
+  document.body.dir = t.dir;
+  document.title = t.title;
+
+  document.getElementById('subtitle').textContent = t.subtitle;
+  document.getElementById('meta').textContent = t.meta;
+
+  document.getElementById('s1-title').textContent = t.s1.title;
+  document.getElementById('s1-body').textContent = t.s1.body;
+
+  document.getElementById('s2-title').textContent = t.s2.title;
+  document.getElementById('s2-body').textContent = t.s2.body;
+  const s2list = document.getElementById('s2-list');
+  s2list.innerHTML = t.s2.list.map(item => `<li>${item}</li>`).join('');
+  document.getElementById('s2-note').innerHTML = t.s2.note;
+
+  document.getElementById('s3-title').textContent = t.s3.title;
+  document.getElementById('s3-body').innerHTML = t.s3.body;
+
+  document.getElementById('s4-title').textContent = t.s4.title;
+  document.getElementById('s4-body').textContent = t.s4.body;
+  const s4list = document.getElementById('s4-list');
+  s4list.innerHTML = t.s4.list.map(item => `<li>${item}</li>`).join('');
+
+  document.getElementById('s5-title').textContent = t.s5.title;
+  document.getElementById('s5-body').textContent = t.s5.body;
+
+  document.getElementById('s6-title').textContent = t.s6.title;
+  document.getElementById('s6-body').textContent = t.s6.body;
+
+  document.getElementById('s7-title').textContent = t.s7.title;
+  document.getElementById('s7-body').textContent = t.s7.body;
+
+  document.getElementById('footer').textContent = t.footer;
+
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${code}')"]`).classList.add('active');
+}
+
+setLang('tr');
+</script>
+
+</body>
+</html>
